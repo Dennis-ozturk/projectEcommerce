@@ -1,17 +1,16 @@
 <?php 
-class Product extends Dbh {
-    private $productCode;
-    private $productName;
-    private $productLine;
-    private $productVendor;
-    private $productDescription;
-    private $quantityInStock;
-    private $buyPrice;
-    private $MSRP;
+class Product {
+    public function __construct(){
+        $this->db = new Dbh();
+        $this->db = $this->db->connect();
+    }
+
 
     public function show(){
-        $stmt = $this->connect()->prepare("SELECT * FROM classicmodels.products");
-        
+        $stmt = $this->db->prepare("SELECT * FROM classicmodels.products");
+        if($stmt->execute()){
+
+        }
     }
 
     public function add(){

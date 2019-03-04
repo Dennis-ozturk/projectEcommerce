@@ -1,5 +1,5 @@
 <?php require_once('../../db/config.php'); ?>
-<?php require_once('src/user.php'); ?>
+<!-- <?php require_once('src/user.php'); ?> -->
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $object = new User;
+            $object = new User();
             $object->getAllUsers($_POST['username'], $_POST['password']);
         }
     ?>

@@ -1,20 +1,23 @@
 <?php
 class Dbh {
-    private $servername = "localhost";
     private $username = "root";
     private $password = "";
+    private $host = "localhost";
     private $dbname = "classicmodels";
     private $charset = "utf8";
 
-    public function connect(){
+    protected $conn;
+
+    public function __construct(){
         try{
-            $dsn = "mysql:host=".$this->servername.";dbname=".$this->dbname.";charset=".$this->charset;
-            $pdo = new PDO($dsn, $this->username, $this->password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
+            $dsn = "mysql:host=".$this->host.";dbname=".$this->dbname.";charset=".$this->charset;
+            $this->conn = new PDO($dsn ,$this->username,$this->password);    
         }catch(PDOException $e){
             throw new \PDOException($e->getMessage(), (int)$e->getCode());
         }
+    }
 
+    public function connect(){
+        return $this->conn;
     }
 }

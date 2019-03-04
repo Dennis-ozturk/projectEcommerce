@@ -24,6 +24,7 @@
         }
     }
     if(isset($_POST['edit'])){
+        
         $object = new Product;
         $object->edit();
     }
