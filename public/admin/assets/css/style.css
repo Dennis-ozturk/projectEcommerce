@@ -28,7 +28,7 @@ header{
 
 header nav .menu{
     display: none;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     flex-wrap: wrap;
     background-color: #fff;
@@ -50,11 +50,6 @@ header nav .menu li a{
 header nav .menu{
     text-decoration: none;
     list-style: none;
-}
-
-header nav .menu li:nth-child(1){
-    border-top: 1px solid #EAEAEB;
-    padding-top: 20px;
 }
 
 header nav label{
@@ -126,11 +121,9 @@ header nav label{
 @media only screen and (min-width: 700px){
     /* HEADER */
     header{
-        width: 220px;
-        height: 100vh;
-        border: none;
+        width: 100%;
+        height: auto;
         float: left;
-        border-right: 1px solid #EAEAEB;
     }
 
     header nav label{
@@ -139,7 +132,7 @@ header nav label{
 
     header nav .menu{
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         float: left;
     }
 

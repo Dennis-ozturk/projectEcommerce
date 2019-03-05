@@ -1,5 +1,5 @@
 <?php 
-class User{
+class User {
     private $db;
     public function __construct(){
         $this->db = new Dbh();
@@ -12,7 +12,6 @@ class User{
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 if($row['username'] == $username){
                     if($row['password'] == $password){
-                        echo("Found User");
                         $_SESSION['admin'] = $username;
                         header('Location: dashboard.php');
                     }
