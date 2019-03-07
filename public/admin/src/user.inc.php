@@ -7,17 +7,17 @@ class User {
     }
 
     public function getAllUsers($username, $password){
-        $stmt = $this->db->prepare("SELECT * FROM classicmodels.admin");
+        $stmt = $this->db->prepare("SELECT * FROM classicmodels.admin ");
         if($stmt->execute()){
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 if($row['username'] == $username){
-                    if($row['password'] == $password){
+                    if($row['pass'] == $password){
                         $_SESSION['admin'] = $username;
                         header('Location: dashboard.php');
                     }
-                }else{
-                    echo("<h1>Try Again</h1>");
-                }
+                }else{?>
+                    <h1>Try Again!</h1>
+                <?php }
             }
         }
     }

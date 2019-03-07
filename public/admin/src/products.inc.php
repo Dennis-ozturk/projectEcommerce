@@ -42,8 +42,18 @@ class Product {
         }
     }
 
-    public function delete(){
-        
-    }
+    public function delete($productCode){
+        try{
+            $stmt = $this->db->prepare("DELETE FROM products WHERE productCode = :productCode");
+            $result = $stmt->execute(["productCode" => $productCode]);
+            if($result){
+                header('Location: products.php');
+            }else {?>
+                <p class="alert alert-warning">Try Again</p>
+            <?php }
+        }catch(PDOException $e){
+            echo($e->getMessage());
+        }
+    }   
 
 }

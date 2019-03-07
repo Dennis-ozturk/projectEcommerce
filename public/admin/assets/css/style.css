@@ -5,6 +5,11 @@ html, body{
     color: #000;
 }
 
+.dashboard .alert{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .admin_page{
     background-color: #323232;
     color: #fff;
