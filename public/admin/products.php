@@ -1,4 +1,4 @@
-<?php include_once('includes/header.php'); ?>
+<?php require_once('includes/header.php'); ?>
 <?php require_once('src/products.inc.php'); ?>
 <?php 
     if(isset($_GET['del'])){

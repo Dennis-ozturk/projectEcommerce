@@ -5,6 +5,12 @@ class Product {
         $this->db = $this->db->connect();
     }
 
+    public function createProduct($fields){
+        $stmt = $this->db->prepare("INSERT INTO classicmodels.product 
+        (productCode, productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)
+        VALUES (:productCode, :productName, :productLine, :productScale, :productVendor, :productDescription, :quantityInStock, :buyPrice, :MSRP)");
+    }
+
     public function getProducts(){
         $stmt = $this->db->prepare("SELECT * FROM classicmodels.products");
         if($stmt->execute()){
@@ -19,7 +25,7 @@ class Product {
     
     public function selectOneProduct($productCode){
         $stmt = $this->db->prepare("SELECT * FROM classicmodels.products WHERE productCode = :productCode");
-        $stmt->bindValue(":productCode", $productCode);
+        $stmt->bindValue(":productCode", $productCode, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
@@ -28,10 +34,10 @@ class Product {
     public function edit($fields, $productCode){
         try{
             $stmt = $this->db->prepare("UPDATE classicmodels.products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice WHERE productCode = :productCode");
-            $stmt->bindValue(':productName', $fields[0]);
-            $stmt->bindValue(':productDescription', $fields[1]);
-            $stmt->bindValue(':buyPrice', $fields[2]);
-            $stmt->bindValue(':productCode', $productCode);
+            $stmt->bindValue(':productName', $fields[0], PDO::PARAM_STR);
+            $stmt->bindValue(':productDescription', $fields[1], PDO::PARAM_STR);
+            $stmt->bindValue(':buyPrice', $fields[2], PDO::PARAM_INT);
+            $stmt->bindValue(':productCode', $productCode, PDO::PARAM_STR);
             
             if($stmt){
                 $stmt->execute();

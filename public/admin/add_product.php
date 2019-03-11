@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="" method="POST">
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">product Code:</label>
             <input type="text" class="form-control" name="productCode">
@@ -47,12 +47,32 @@
             <label for="message-text" class="col-form-label">MSRP:</label>
             <input type="text" class="form-control" name="MSRP">
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-success" name="add">Add product</button>
+          </div>
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success" name="add">Add product</button>
-      </div>
+      <?php 
+        if(isset($_POST['add'])){
+          $productCode = $_POST['productCode'];
+          $productName = $_POST['productName'];
+          $productLine = $_POST['productLine'];
+          $productScale = $_POST['productScale'];
+          $productVendor = $_POST['productVendor'];
+          $productDescription = $_POST['productDescription'];
+          $quantityInStock = $_POST['quantityInStock'];
+          $buyPrice = $_POST['buyPrice'];
+          $MSRP = $_POST['MSRP'];
+
+          $fields = [$productCode, $productName, $productLine, $productScale, 
+          $productVendor, $productDescription, $quantityInStock, $buyPrice, $MSRP];
+
+          $editProduct = new Product();
+          $editProduct->createProduct($fields);
+        }
+
+      ?>
     </div>
   </div>
 </div>
