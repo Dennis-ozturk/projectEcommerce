@@ -1,10 +1,8 @@
 <?php
-require_once('../db/config.php');
-require_once('src/CategoryProductObjects.php');
 require_once('../includes/header.php');
+require_once('src/CategoryProductObjects.php');
 $_SESSION['page'] = $_SERVER["REQUEST_URI"];
 $prodQuery = new CategoryProducts();
-session_start();
 ?>
 
 
