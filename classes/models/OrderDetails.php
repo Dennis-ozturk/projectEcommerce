@@ -1,5 +1,6 @@
 <?php
 require_once("../db/Database.php");
+require_once("Product.php");
 
 class OrderDetails {
     public $orderNumber = false;

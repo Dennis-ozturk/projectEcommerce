@@ -23,7 +23,7 @@
                 <li><a href="category">About us</a></li>
                 <li><a href="#">Contact us</a></li>
                 <li><a href="#">My profile</a></li>
-                <li><a href="#">Cart</a></li>
+                <li><a href="cart">Cart</a></li>
                 <li><a href="#">Not registerd yet?<br> Register now!</a></li>
             </ul>
         </nav>
