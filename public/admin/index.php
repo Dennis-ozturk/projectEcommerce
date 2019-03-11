@@ -1,5 +1,5 @@
 <?php require_once('../../db/config.php'); ?>
-<?php require_once('src/user.php'); ?>
+<!-- <?php require_once('src/user.inc.php'); ?> -->
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html>
@@ -28,11 +28,11 @@
     </form>
     <?php 
         if(isset($_POST['sub'])){
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
+            $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
 
-            $object = new User;
-            $object->getAllUsers($_POST['username'], $_POST['password']);
+            $object = new User();
+            $object->getAllUsers($username, $password);
         }
     ?>
 </body>
