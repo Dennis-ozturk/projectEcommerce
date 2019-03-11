@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Rewrite for dashboard.php to dashboard
+RewriteRule ^dashboard dashboard.php [NC,L]
+
+# Rewrite for category.php to category
+RewriteRule ^customers customers.php [NC,L]
+
+# Rewrite for products.php to products§
+RewriteRule ^products products.php [NC,L]
+
+# So it looks like this category/productName 
+# RewriteRule ^category/([0-9a-zA-Z]+) category.php?x=$1 [NC, L]
