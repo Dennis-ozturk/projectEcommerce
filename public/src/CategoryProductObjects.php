@@ -2,16 +2,15 @@
     class CategoryProducts {
 
         private $conn;
-        public $stmt;
         public function __construct(){
             $this->conn = new Dbh();
             $this->conn = $this->conn->connect();
         }
 
         private function getProducts($nrRows){
-            $this->stmt = $this->conn->prepare("SELECT  * FROM products LIMIT $nrRows");
-            $this->stmt->execute();
-            return $this->stmt;
+            $this->conn = $this->conn->prepare("SELECT  * FROM products LIMIT $nrRows");
+            $this->conn->execute();
+            return $this->conn;
         }
 
         public function printProducts($nrRows = 25){

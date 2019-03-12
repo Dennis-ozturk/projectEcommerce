@@ -1,7 +1,7 @@
 <?php
 class Dbh {
     private $username = "root";
-    private $password = "";
+    private $password = "root";
     private $host = "localhost";
     private $dbname = "classicmodels";
     private $charset = "utf8";
