@@ -1,32 +1,53 @@
-<?php include_once('includes/header.php'); ?>
-<?php require_once('src/products.php'); ?>
-
+<?php require_once('includes/header.php'); ?>
+<?php require_once('src/products.inc.php'); ?>
+<?php 
+    if(isset($_GET['del'])){
+        $id = $_GET['del'];
+        $productDel = new Product();
+        $productDel->delete($id);
+    }
+?>
 <div class="dashboard">
-    <?php  
-    
-    if($stmt->rowCount() > 0){
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
-        <br>
-            <form action="" method="POST" class="productsEdit">
-                <textarea style="display:none;" name="productCode" rows="2" cols="20"><?php echo($row['productCode']); ?></textarea>
-                <textarea name="productName" rows="2" cols="10"><?php echo($row['productName']); ?></textarea>
-                <textarea name="productLine" rows="2" cols="10"><?php echo($row['productLine']); ?></textarea>
-                <textarea name="productVendor" rows="2" cols="10"><?php echo($row['productVendor']); ?></textarea> 
-                <textarea name="productDescription" rows="2" cols="10"><?php echo($row['productDescription']); ?></textarea> 
-                <textarea name="quantityInStock" rows="2" cols="10"><?php echo($row['quantityInStock']); ?></textarea> 
-                <textarea name="buyPrice" rows="2" cols="10"><?php echo($row['buyPrice']); ?></textarea>  
-                <textarea name="MSRP" rows="2" cols="10"><?php echo($row['MSRP']); ?></textarea> 
+    <?php include_once('add_product.php'); ?>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Code</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>    
 
-                <input type="submit" name="edit">
-            </form>
-        <br>
-        <?php 
-        }
-    }
-    if(isset($_POST['edit'])){
-        $object = new Product;
-        $object->edit();
-    }
-    ?>
+        <tbody>
+            <?php 
+                $product = new Product();
+
+                $rows = $product->getProducts();
+                $i = 1;
+                foreach($rows as $row){?>
+                <tr>
+                    <th scope="row"><?php echo($i) ?></th>
+                    <td><?php echo($row['productCode']); ?></td>
+                    <td><?php echo($row['productName']); ?></td>
+                    <td><?php echo($row['productDescription']); ?></td>
+                    <td><?php echo($row['buyPrice']); ?></td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="edit_product.php?id=<?php echo($row['productCode']); ?>">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="products.php?del=<?php echo($row['productCode']); ?>">Delete</a>
+                    </td>
+                </tr>
+                <?php 
+                    $i++;
+                }
+            ?>
+        </tbody>
+
+    </table>
 </div>
+
 <?php include_once('includes/footer.php'); ?>
+
+

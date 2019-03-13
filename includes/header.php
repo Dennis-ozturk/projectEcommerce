@@ -1,3 +1,7 @@
+<?php
+require_once('../db/config.php');
+session_start(); 
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +23,7 @@
             <input type="checkbox" id="toggle">
             <!-- MOBILE/WEB NAVIGATION -->
             <ul class="menu">  
-                <li><a href="index.php">Vehicles</a></li>
+                <li><a href="product-category-page">Vehicles</a></li>
                 <li><a href="category">About us</a></li>
                 <li><a href="#">Contact us</a></li>
                 <li><a href="#">My profile</a></li>

@@ -9,5 +9,14 @@ RewriteRule ^customers customers.php [NC,L]
 # Rewrite for products.php to products§
 RewriteRule ^products products.php [NC,L]
 
+# Rewrite for orders.php to orders
+RewriteRule ^orders orders.php [NC,L]
+
+# Rewrite for products.php to products§
+RewriteRule ^login login.php [NC,L]
+
+# Rewrite for products.php to products§
+RewriteRule ^logout logout.php [NC,L]
+
 # So it looks like this category/productName 
 # RewriteRule ^category/([0-9a-zA-Z]+) category.php?x=$1 [NC, L]
