@@ -48,15 +48,25 @@
       <?php 
         if(isset($_POST['add'])){
           $orderNumber = $_POST['orderNumber'];
-          $orderDate = $_POST['orderDate'];
-          $requiredDate = $_POST['requiredDate'];
-          $shippedDate = $_POST['shippedDate'];
           $status = $_POST['status'];
           $comments = $_POST['comments'];
           $customerNumber = $_POST['customerNumber'];
 
+          /*  Skapa filtrering  */
+          $orderNumber = filter_var($orderNumber, FILTER_SANITIZE_NUMBER_INT);
+          $orderDate = preg_replace("([^0-9/\s\-])", "", $_POST['orderDate']);
+          $requiredDate = preg_replace("([^0-9/\s\-])", "", $_POST['requiredDate']);
+          $shippedDate = preg_replace("([^0-9/\s\-])", "", $_POST['shippedDate']);
+          $status = filter_var($status, FILTER_SANITIZE_STRING);
+          $comments = filter_var($comments, FILTER_SANITIZE_STRING);
+          $customerNumber = filter_var($customerNumber, FILTER_SANITIZE_NUMBER_INT);
+          
+
+
           $fields = [$orderNumber, $orderDate, $requiredDate, $shippedDate, $status, 
           $comments, $customerNumber];
+
+          print_r($fields);
 
           $editOrder = new Order();
           $editOrder->createOrder($fields);

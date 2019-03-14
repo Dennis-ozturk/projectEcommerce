@@ -31,9 +31,12 @@ if(isset($_GET['id'])){
 
 if(isset($_POST['submit'])){
     $id = $_POST['id'];
-    $orderDate = $_POST['orderDate'];
     $comments = $_POST['comments'];
     $customerNumber = $_POST['customerNumber'];
+
+    $customerNumber = filter_var($customerNumber, FILTER_SANITIZE_NUMBER_INT);
+    $orderDate = preg_replace("([^0-9/\s\-])", "", $_POST['orderDate']);
+    $comments = filter_var($comments, FILTER_SANITIZE_STRING);
 
     $fields = [$orderDate, $comments, $customerNumber];
 
