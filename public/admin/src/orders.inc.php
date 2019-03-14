@@ -9,8 +9,8 @@ class Order {
     public function createOrder($fields){
         $stmt = $this->db->prepare("INSERT INTO classicmodels.orders 
         (orderNumber, orderDate, requiredDate,shippedDate, `status`, comments, customerNumber)
-        VALUES ($fields[0], DATE'$fields[1]', DATE'$fields[2]', DATE'$fields[3]', '$fields[4]', '$fields[5]', $fields[6])");
-        $answer = $stmt->execute();
+        VALUES (?,?,?,?,?,?,?)");
+        $answer = $stmt->execute([$fields[0],$fields[1],$fields[2],$fields[3],$fields[4],$fields[5],$fields[6]]);
     }
 
     public function getOrders(){

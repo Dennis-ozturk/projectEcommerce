@@ -61,12 +61,8 @@
           $comments = filter_var($comments, FILTER_SANITIZE_STRING);
           $customerNumber = filter_var($customerNumber, FILTER_SANITIZE_NUMBER_INT);
           
-
-
           $fields = [$orderNumber, $orderDate, $requiredDate, $shippedDate, $status, 
           $comments, $customerNumber];
-
-          print_r($fields);
 
           $editOrder = new Order();
           $editOrder->createOrder($fields);
