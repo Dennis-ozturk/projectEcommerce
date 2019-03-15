@@ -1,11 +1,11 @@
 <?php
-require_once('../db/config.php');
 session_start();
 require_once('../includes/header.php');
+require_once('src/ProductObject.php');
 
 $productName = $_GET["product"];
-$stmt = $conn->query("SELECT * FROM products WHERE productName LIKE '$productName'");
-$row = $stmt->fetch();
+$Product1 = new Product();
+$row = $Product1->getProduct($productName);
 ?>
 <Main class="product-container">
     <a class="back-page" href="javascript:history.go(-1)">Previous page</a>
@@ -18,6 +18,7 @@ $row = $stmt->fetch();
                 <h3>Description:</h3>
                 <p><?php echo $row['productDescription'];?></p>
             </section>
+            <p>Quantity: <?php echo $row['quantityInStock'];?></p>
             <p>Article Number: <?php echo $row['productCode'];?></p>
             <section>
             <p>Price: $<?php echo $row['buyPrice'];?></p>

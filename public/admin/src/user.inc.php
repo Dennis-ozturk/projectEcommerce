@@ -17,6 +17,16 @@ class User {
         
     }
 
+    public function getUsers($username, $password){
+        $stmt = $this->db->prepare("SELECT * FROM classicmodels.users WHERE username = :username AND `password` = :pass");
+        if($stmt->execute([':username' => $username, ':pass' => $password]) && $stmt->fetchColumn()){
+            $_SESSION['user'] = $username;
+            header('location: index.php');
+        }else {?>
+            <h1>Try again!</h1>
+        <?php }
+    }
+
     public function exit(){
         unset($_SESSION["admin"]);
         session_destroy();
