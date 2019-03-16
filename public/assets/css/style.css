@@ -231,4 +231,10 @@ header nav label{
         margin-left: auto;
         margin-right: 50px;
     }
+
+    /*  LOGIN FORM  */
+
+    .form-group label{
+        display: inline;
+    }
 }

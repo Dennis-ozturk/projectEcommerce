@@ -1,18 +1,18 @@
-<button type="button" class="btn btn-primary alert alert-success" data-toggle="modal" data-target="#addOrder" data-whatever="@mdo">Add order</button>
+<button type="button" class="btn btn-primary alert alert-success" data-toggle="modal" data-target="#addOrder" data-whatever="@mdo">Log in</button>
 
 <div class="modal fade" id="addOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add order</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Log in</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="POST">
+        <form method="POST">
           <div class="form-group">
-            <label for="username" class="col-form-label">Username:</label>
+            <label for="userName" class="col-form-label">Username:</label>
             <input type="text" class="form-control" name="userName">
           </div>
           <div class="form-group">
@@ -33,13 +33,12 @@
           /*  Skapa filtrering  */
           $userName = filter_var($userName, FILTER_SANITIZE_STRING);
           $password = filter_var($password, FILTER_SANITIZE_STRING);
+          $password = md5($password);
           
           $fields = [$userName, $password];
-
           $user1 = new User();
           $user1->logIn($fields);
         }
-
       ?>
     </div>
   </div>
