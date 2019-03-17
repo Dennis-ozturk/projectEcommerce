@@ -7,7 +7,7 @@ class User {
     }
 
     public function getAllUsers($username, $password){
-        $stmt = $this->db->prepare("SELECT * FROM classicmodels.admin WHERE username = :username AND pass = :pass");
+        $stmt = $this->db->prepare("SELECT * FROM admin WHERE username = :username AND pass = :pass");
         if($stmt->execute([':username' => $username, ':pass' => $password]) && $stmt->fetchColumn()){
             $_SESSION['admin'] = $username;
             header('location: dashboard.php');

@@ -14,15 +14,15 @@
     <input type="submit" name="action">
 </form>
 
-<?php if($userLoggedIn): ?>
-    <div>
-        <br>
-        <span>Dina erbjudanden </span>
-        <?php echo $_SESSION['user']; ?>
-    </div>
+<?php if ($userLoggedIn) : ?>
+<div>
+    <br>
+    <span>Dina erbjudanden </span>
+    <?php echo $_SESSION['user']; ?>
+</div>
 <?php endif; ?>
 
 <a href="?logout=true">Logga ut</a>
 
 
-<?php include('../includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?> 
