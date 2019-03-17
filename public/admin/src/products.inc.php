@@ -47,14 +47,16 @@ class Product
         return $result;
     }
 
-    public function edit($fields, $productCode)
+    public function edit($fields)
     {
         try {
             $stmt = $this->db->prepare("UPDATE products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice WHERE productCode = :productCode");
-            $stmt->bindValue(':productName', $fields[0], PDO::PARAM_STR);
-            $stmt->bindValue(':productDescription', $fields[1], PDO::PARAM_STR);
-            $stmt->bindValue(':buyPrice', $fields[2], PDO::PARAM_INT);
-            $stmt->bindValue(':productCode', $productCode, PDO::PARAM_STR);
+            foreach($fields as $key => $value){
+                if($key == ':buyPrice' || $key == ':productCode'){
+                    $stmt->bindValue($key, $value, PDO::PARAM_INT);
+                }
+                $stmt->bindValue($key, $value, PDO::PARAM_STR);
+            }
 
             if ($stmt) {
                 $stmt->execute();
