@@ -48,5 +48,4 @@ session_start();
                 <?php } ?>
             </ul>
         </nav>
-        
     </header>
