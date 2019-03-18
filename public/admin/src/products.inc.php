@@ -18,11 +18,8 @@ class Product
             $stmt->bindValue($key, $value, PDO::PARAM_STR);
         }
 
-        if(!$stmt->execute()){
-            echo("Something went wrong");
-        }else {
-            echo("Success");
-        }
+        $stmt->execute();
+       
     }
 
     public function getProducts()
@@ -74,8 +71,6 @@ class Product
             $result = $stmt->execute(["productCode" => $productCode]);
             if ($result) {
                 header('Location: products.php');
-            } else {
-                echo ("Try again");
             }
         } catch (PDOException $e) {
             echo ($e->getMessage());
