@@ -1,6 +1,10 @@
 <?php require_once('../../db/config.php'); ?>
+<<<<<<< HEAD
 <?php require_once('src/user.inc.php'); ?> 
+=======
+>>>>>>> 76086f5b9a89a93954e569298c675212de1a7980
 <?php session_start(); ?>
+<?php require_once('src/user.inc.php'); ?>
 <!DOCTYPE html>
 <html>
 

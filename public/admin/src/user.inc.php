@@ -17,7 +17,7 @@ class User
             $_SESSION['admin'] = $username;
             header('location: dashboard.php');
         } else { ?>
-        <p class="error">Try Again!</p>
+<p class="error">Try Again!</p>
 <?php 
 }
 }

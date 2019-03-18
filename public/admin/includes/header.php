@@ -1,6 +1,6 @@
 <?php require_once('../../db/config.php'); ?>
-<?php require_once('src/user.inc.php'); ?>
 <?php session_start(); ?>
+<?php require_once('src/user.inc.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,6 +29,7 @@
                 <li><a href="dashboard">Dashboard</a></li>
                 <li><a href="products">Products</a></li>
                 <li><a href="customers">Customers</a></li>
+                <li><a href="orders">Orders</a></li>
                 <li><a href="logout.php">Logout</a></li>
             </ul>
         </nav>

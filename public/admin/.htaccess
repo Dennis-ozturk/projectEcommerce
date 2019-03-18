@@ -9,6 +9,9 @@ RewriteRule ^customers customers.php [NC,L]
 # Rewrite for products.php to products§
 RewriteRule ^products products.php [NC,L]
 
+# Rewrite for orders.php to orders
+RewriteRule ^orders orders.php [NC,L]
+
 # Rewrite for products.php to products§
 RewriteRule ^login login.php [NC,L]
 
