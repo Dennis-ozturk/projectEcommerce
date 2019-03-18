@@ -16,14 +16,7 @@ class User
         if ($stmt->execute() && $stmt->fetchColumn()) {
             $_SESSION['admin'] = $username;
             header('location: dashboard.php');
-<<<<<<< Updated upstream
-        } else { ?>
-<p class="error">Try Again!</p>
-<?php 
-}
-=======
-        }
->>>>>>> Stashed changes
+        } 
 }
 
 public function exit()
