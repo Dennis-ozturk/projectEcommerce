@@ -28,8 +28,6 @@ class Customer
             $result = $stmt->execute([':id' => $id]);
 
             if($result){
-            }else {
-                echo("Not deleted");
             }
         } catch (PDOException $e) {
             echo ($e->getMessage());

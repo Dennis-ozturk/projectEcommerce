@@ -1,8 +1,15 @@
 <?php require_once('../../db/config.php'); ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <?php require_once('src/user.inc.php'); ?> 
 =======
 >>>>>>> 76086f5b9a89a93954e569298c675212de1a7980
+=======
+<<<<<<< Updated upstream
+<?php require_once('src/user.inc.php'); ?> 
+=======
+>>>>>>> Stashed changes
+>>>>>>> feature/admin_page
 <?php session_start(); ?>
 <?php require_once('src/user.inc.php'); ?>
 <!DOCTYPE html>
