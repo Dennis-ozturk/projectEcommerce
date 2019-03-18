@@ -1,10 +1,10 @@
 <?php require_once('includes/header.php'); ?>
 <?php require_once('src/products.inc.php'); ?>
 <?php 
+$product = new Product();
 if (isset($_GET['del'])) {
     $id = $_GET['del'];
-    $productDel = new Product();
-    $productDel->delete($id);
+    $product->delete($id);
 }
 ?>
 <div class="dashboard">
@@ -23,8 +23,6 @@ if (isset($_GET['del'])) {
 
         <tbody>
             <?php 
-            $product = new Product();
-
             $rows = $product->getProducts();
             $i = 1;
             foreach ($rows as $row) { ?>
