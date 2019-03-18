@@ -67,7 +67,7 @@ class Product
     public function delete($productCode)
     {
         try {
-            $stmt = $this->db->prepare("DELETE FROM products WHERE productCode = :productCode");
+            $stmt = $this->db->prepare("DELETE FROM classicmodels.products WHERE productCode = :productCode");
             $result = $stmt->execute(["productCode" => $productCode]);
             if ($result) {
                 header('Location: products.php');

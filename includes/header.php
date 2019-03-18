@@ -31,7 +31,7 @@ session_start();
                 <li><a href="category">About us</a></li>
                 <li><a href="#">Contact us</a></li>
                 <?php
-                    if($_SESSION['user']){
+                    if(isset($_SESSION['user'])){
                 ?>
                     <li><a href="#">My profile</a></li>
                 <?php 
@@ -40,7 +40,7 @@ session_start();
                 <?php }?>
                     <li><a href="#">Cart</a></li>
                 <?php
-                if($_SESSION['user']){
+                if(isset($_SESSION['user'])){
                 ?>
                     <li><a href="logout.php">Log out</a></li>
                 <?php }else{?>
