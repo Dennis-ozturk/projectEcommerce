@@ -11,15 +11,26 @@ class Product
     public function createProduct($fields)
     {
         $stmt = $this->db->prepare("INSERT INTO products
-        (productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)
-        VALUES (:productName, :productLine, :productScale, :productVendor, :productDescription, :quantityInStock, :buyPrice, :MSRP)");
+        (productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP, img)
+        VALUES (:productName, :productLine, :productScale, :productVendor, :productDescription, :quantityInStock, :buyPrice, :MSRP, :product_img)");
 
         foreach ($fields as $key => $value) {
-            $stmt->bindValue($key, $value, PDO::PARAM_STR);
+            if ($key == ':buyPrice' || $key == ':MSRP') {
+                echo $key;
+                echo '<br>';
+                echo $value;
+                echo '<br>';
+                $stmt->bindValue($key, $value, PDO::PARAM_INT);
+            } else {
+                echo $key;
+                echo '<br>';
+                echo $value;
+                echo '<br>';
+                $stmt->bindValue($key, $value, PDO::PARAM_STR);
+            }
         }
 
         $stmt->execute();
-       
     }
 
     public function getProducts()
@@ -44,16 +55,19 @@ class Product
         return $result;
     }
 
-    public function edit($fields)
+    public function edit($fields, $id)
     {
         try {
-            $stmt = $this->db->prepare("UPDATE products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice WHERE productCode = :productCode");
-            foreach($fields as $key => $value){
-                if($key == ':buyPrice' || $key == ':productCode'){
+            $stmt = $this->db->prepare("UPDATE products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice, img = :product_img WHERE productCode = :productCode");
+            foreach ($fields as $key => $value) {
+                if ($key == ':buyPrice') {
                     $stmt->bindValue($key, $value, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue($key, $value, PDO::PARAM_STR);
                 }
-                $stmt->bindValue($key, $value, PDO::PARAM_STR);
             }
+            $stmt->bindValue(':productCode', $id, PDO::PARAM_INT);
+
 
             if ($stmt) {
                 $stmt->execute();

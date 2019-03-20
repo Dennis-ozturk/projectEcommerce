@@ -32,6 +32,7 @@ if (isset($_GET['del'])) {
                 <td><?php echo ($row['productName']); ?></td>
                 <td><?php echo ($row['productDescription']); ?></td>
                 <td><?php echo ($row['buyPrice']); ?></td>
+                <td><?php echo ($row['img']); ?></td>
                 <td>
                     <a class="btn btn-sm btn-primary" href="edit_product.php?id=<?php echo ($row['productCode']); ?>">Edit</a>
                     <a class="btn btn-sm btn-danger" href="products.php?del=<?php echo ($row['productCode']); ?>">Delete</a>

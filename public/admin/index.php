@@ -1,9 +1,6 @@
 <?php require_once('../../db/config.php'); ?>
-<<<<<<< Updated upstream
-<?php require_once('src/user.inc.php'); ?> 
-=======
->>>>>>> Stashed changes
 <?php session_start(); ?>
+<?php require_once('src/user.inc.php'); ?> 
 <!DOCTYPE html>
 <html>
 

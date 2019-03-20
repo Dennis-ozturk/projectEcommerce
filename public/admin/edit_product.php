@@ -24,23 +24,28 @@ if (isset($_GET['id'])) {
         <label for="price">Price</label>
         <input type="text" class="form-control" name="buyPrice" placeholder="Price" value="<?php echo ($result['buyPrice']); ?>">
     </div>
+    <div class="form-group">
+        <label for="product_img">Image</label>
+        <input type="file" class="form-control" name="product_img" value="<?php echo ($result['img']); ?>">
+    </div>
     <input type="submit" class="btn btn-primary" name="submit">
 </form>
 
 <?php 
 
 if (isset($_POST['submit'])) {
-    
     $fields = [
-        ':id' => filter_input(INPUT_POST, $_POST['id'], FILTER_SANITIZE_NUMBER_INT),
-        ':productName' => filter_input(INPUT_POST, $_POST['productName'], FILTER_SANITIZE_NUMBER_INT),
-        ':productDescription' => filter_input(INPUT_POST, $_POST['productDescription'], FILTER_SANITIZE_NUMBER_INT),
-        ':buyPrice' => filter_input(INPUT_POST, $_POST['buyPrice'], FILTER_SANITIZE_NUMBER_INT),
-
+        ':productName' => filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_STRING),
+        ':productDescription' => filter_input(INPUT_POST, 'productDescription', FILTER_SANITIZE_STRING),
+        ':buyPrice' => filter_input(INPUT_POST, 'buyPrice', FILTER_SANITIZE_NUMBER_INT),
+        ':product_img' => filter_input(INPUT_POST, 'product_img', FILTER_SANITIZE_STRING),
     ];
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT); 
+
+    echo $id;
 
     $editProduct = new Product();
-    $editProduct->edit($fields);
+    $editProduct->edit($fields, $id);
 }
 
 ?> 
