@@ -33,17 +33,21 @@ session_start();
                 <li><a href="category">About us</a></li>
                 <li><a href="#">Contact us</a></li>
                 <?php
-                    if(isset($_SESSION['user'])){
-                ?>
-                    <li><a href="#">My profile</a></li>
+                if (isset($_SESSION['user'])) {
+                    ?>
+                <li><a href="#">My profile</a></li>
+                <?php 
+            } else { ?>
+                    <li><?php include_once('userLogin.php'); ?></li>
                 <?php 
             } ?>
                 <li><a href="#">Cart</a></li>
                 <?php
-                if(isset($_SESSION['user'])){
-                ?>
-                    <li><a href="logout.php">Log out</a></li>
-                <?php }else{?>
+                if (isset($_SESSION['user'])) {
+                    ?>
+                <li><a href="logout.php">Log out</a></li>
+                <?php 
+            } else { ?>
                 <li><a href="createAccount.php">Not registerd yet?<br> Register now!</a></li>
                 <?php 
             } ?>

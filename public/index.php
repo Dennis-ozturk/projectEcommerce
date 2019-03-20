@@ -1,6 +1,4 @@
 <?php include('../includes/header.php'); ?>
-
-<h1>Index file test</h1>
     <?php
     if(isset($_SESSION['user'])){
         echo "<h5>Välkommen ".$_SESSION['user']."</h5>";
