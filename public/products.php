@@ -1,27 +1,27 @@
 <?php
-require_once('../db/config.php');
-session_start();
 require_once('../includes/header.php');
+require_once('src/ProductObject.php');
 
 $productName = $_GET["product"];
-$stmt = $conn->query("SELECT * FROM products WHERE productName LIKE '$productName'");
-$row = $stmt->fetch();
+$Product1 = new Product();
+$row = $Product1->getProduct($productName);
 ?>
 <Main class="product-container">
     <a class="back-page" href="javascript:history.go(-1)">Previous page</a>
     <section class="product">
-        <img src="<?php ?>https://picsum.photos/600/500" alt="product-<?php echo $row['productName'];?>">
+        <img src="<?php  ?>https://picsum.photos/600/500" alt="product-<?php echo $row['productName']; ?>">
         <div class="vertical-hr"></div>
         <section>
             <section>
-                <h1><?php echo $row['productName'];?></h1>
+                <h1><?php echo $row['productName']; ?></h1>
                 <h3>Description:</h3>
-                <p><?php echo $row['productDescription'];?></p>
+                <p><?php echo $row['productDescription']; ?></p>
             </section>
-            <p>Article Number: <?php echo $row['productCode'];?></p>
+            <p>Quantity: <?php echo $row['quantityInStock']; ?></p>
+            <p>Article Number: <?php echo $row['productCode']; ?></p>
             <section>
-            <p>Price: $<?php echo $row['buyPrice'];?></p>
-            <button>Add to cart</button>
+                <p>Price: $<?php echo $row['buyPrice']; ?></p>
+                <button>Add to cart</button>
             </section>
         </section>
     </section>
@@ -30,4 +30,4 @@ $row = $stmt->fetch();
 
 <?php
 require_once('../includes/footer.php');
-?>
+?> 

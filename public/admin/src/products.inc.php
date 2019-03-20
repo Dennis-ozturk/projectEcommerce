@@ -1,65 +1,79 @@
 <?php 
-class Product {
-    public function __construct(){
+class Product
+{
+    private $db;
+    public function __construct()
+    {
         $this->db = new Dbh();
         $this->db = $this->db->connect();
     }
 
-    public function createProduct($fields){
-        $stmt = $this->db->prepare("INSERT INTO classicmodels.product 
-        (productCode, productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)
-        VALUES (:productCode, :productName, :productLine, :productScale, :productVendor, :productDescription, :quantityInStock, :buyPrice, :MSRP)");
+    public function createProduct($fields)
+    {
+        $stmt = $this->db->prepare("INSERT INTO products
+        (productName, productLine, productScale, productVendor, productDescription, quantityInStock, buyPrice, MSRP)
+        VALUES (:productName, :productLine, :productScale, :productVendor, :productDescription, :quantityInStock, :buyPrice, :MSRP)");
+
+        foreach ($fields as $key => $value) {
+            $stmt->bindValue($key, $value, PDO::PARAM_STR);
+        }
+
+        $stmt->execute();
     }
 
-    public function getProducts(){
-        $stmt = $this->db->prepare("SELECT * FROM classicmodels.products");
-        if($stmt->execute()){
-            if($stmt->rowCount() > 0){
-                while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+    public function getProducts()
+    {
+        $stmt = $this->db->prepare("SELECT * FROM products");
+        if ($stmt->execute()) {
+            if ($stmt->rowCount() > 0) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $data[] = $row;
                 }
                 return $data;
             }
         }
     }
-    
-    public function selectOneProduct($productCode){
-        $stmt = $this->db->prepare("SELECT * FROM classicmodels.products WHERE productCode = :productCode");
+
+    public function selectOneProduct($productCode)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE productCode = :productCode");
         $stmt->bindValue(":productCode", $productCode, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function edit($fields, $productCode){
-        try{
-            $stmt = $this->db->prepare("UPDATE classicmodels.products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice WHERE productCode = :productCode");
-            $stmt->bindValue(':productName', $fields[0], PDO::PARAM_STR);
-            $stmt->bindValue(':productDescription', $fields[1], PDO::PARAM_STR);
-            $stmt->bindValue(':buyPrice', $fields[2], PDO::PARAM_INT);
-            $stmt->bindValue(':productCode', $productCode, PDO::PARAM_STR);
-            
-            if($stmt){
+    public function edit($fields, $id)
+    {
+        try {
+            $stmt = $this->db->prepare("UPDATE products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice WHERE productCode = :productCode");
+            foreach ($fields as $key => $value) {
+                if ($key == ':buyPrice') {
+                    $stmt->bindValue($key, $value, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue($key, $value, PDO::PARAM_STR);
+                }
+            }
+            $stmt->bindValue(':productCode', $id, PDO::PARAM_INT);
+            if ($stmt) {
                 $stmt->execute();
                 header('Location: products.php');
             }
-        }catch(PDOException $e){
-            echo($e->getMessage());
+        } catch (PDOException $e) {
+            echo ($e->getMessage());
         }
     }
 
-    public function delete($productCode){
-        try{
-            $stmt = $this->db->prepare("DELETE FROM products WHERE productCode = :productCode");
+    public function delete($productCode)
+    {
+        try {
+            $stmt = $this->db->prepare("DELETE FROM classicmodels.products WHERE productCode = :productCode");
             $result = $stmt->execute(["productCode" => $productCode]);
-            if($result){
+            if ($result) {
                 header('Location: products.php');
-            }else {?>
-                <p class="alert alert-warning">Try Again</p>
-            <?php }
-        }catch(PDOException $e){
-            echo($e->getMessage());
+            }
+        } catch (PDOException $e) {
+            echo ($e->getMessage());
         }
-    }   
-
+    }
 }

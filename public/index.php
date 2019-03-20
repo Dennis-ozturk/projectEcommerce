@@ -1,7 +1,8 @@
 <?php require_once('../classes/models/Product.php'); ?>
 
 <?php include('../includes/header.php'); ?>
-
+    
+   
 <h1>Index file test</h1>
 <?php
 if(isset($_SESSION['user'])){
