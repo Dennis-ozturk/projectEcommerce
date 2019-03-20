@@ -19,7 +19,6 @@ class Product
         }
 
         $stmt->execute();
-       
     }
 
     public function getProducts()
@@ -44,17 +43,18 @@ class Product
         return $result;
     }
 
-    public function edit($fields)
+    public function edit($fields, $id)
     {
         try {
             $stmt = $this->db->prepare("UPDATE products SET productName = :productName, productDescription = :productDescription, buyPrice = :buyPrice WHERE productCode = :productCode");
-            foreach($fields as $key => $value){
-                if($key == ':buyPrice' || $key == ':productCode'){
+            foreach ($fields as $key => $value) {
+                if ($key == ':buyPrice') {
                     $stmt->bindValue($key, $value, PDO::PARAM_INT);
+                } else {
+                    $stmt->bindValue($key, $value, PDO::PARAM_STR);
                 }
-                $stmt->bindValue($key, $value, PDO::PARAM_STR);
             }
-
+            $stmt->bindValue(':productCode', $id, PDO::PARAM_INT);
             if ($stmt) {
                 $stmt->execute();
                 header('Location: products.php');

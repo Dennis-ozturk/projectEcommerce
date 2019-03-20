@@ -30,17 +30,15 @@ if (isset($_GET['id'])) {
 <?php 
 
 if (isset($_POST['submit'])) {
-    
+    $id = filter_var($_GET['id'], FILTER_SANITIZE_NUMBER_INT);
     $fields = [
-        ':id' => filter_input(INPUT_POST, $_POST['id'], FILTER_SANITIZE_NUMBER_INT),
-        ':productName' => filter_input(INPUT_POST, $_POST['productName'], FILTER_SANITIZE_NUMBER_INT),
-        ':productDescription' => filter_input(INPUT_POST, $_POST['productDescription'], FILTER_SANITIZE_NUMBER_INT),
-        ':buyPrice' => filter_input(INPUT_POST, $_POST['buyPrice'], FILTER_SANITIZE_NUMBER_INT),
-
+        ':productName' => filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_STRING),
+        ':productDescription' => filter_input(INPUT_POST, 'productDescription', FILTER_SANITIZE_STRING),
+        ':buyPrice' => filter_input(INPUT_POST, 'buyPrice', FILTER_SANITIZE_NUMBER_INT)
     ];
 
     $editProduct = new Product();
-    $editProduct->edit($fields);
+    $editProduct->edit($fields, $id);
 }
 
 ?> 
