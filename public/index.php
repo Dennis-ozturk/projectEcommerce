@@ -2,6 +2,7 @@
 
 <?php include('../includes/header.php'); ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
     
    
 <h1>Index file test</h1>
@@ -12,6 +13,8 @@ if(isset($_SESSION['user'])){
     echo "<h5>Inte inloggad</h5>";
 }
 =======
+=======
+>>>>>>> parent of 644de89... fixed missing login button
 
 <h1>Index file test</h1>
     <?php
