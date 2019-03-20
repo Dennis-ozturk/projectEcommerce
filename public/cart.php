@@ -32,7 +32,8 @@ if ($_POST) { //om formulär skickats för ändring i kundkorgen, hantera formul
     include('../includes/header.php');
     
     
-    $order = new Order("10103");    // <-- ska hämtas från inloggad användare
+    $order = new Order("10103");    // <-- ska hämtas från inloggad användare. Just nu så kan jag ta fram samtliga varukorgar från databasen genom ett orderNumber. 
+                                        // När man klickar på add to cart så bör det finnas en funktion där som lägger in OrderNumber och CustomerNumber i databasen.
     $orderDetails = $order->get_order_details();
     
     ?>
