@@ -1,18 +1,6 @@
 <?php require_once('../classes/models/Product.php'); ?>
 
 <?php include('../includes/header.php'); ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 4820b5ab03f3e15e3d173a8e79f8498a3fad69a3
-
-<h1>Index file test</h1>
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    
    
 <h1>Index file test</h1>
 <?php
