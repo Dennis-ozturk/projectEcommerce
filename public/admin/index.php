@@ -1,4 +1,4 @@
-<?php require_once('../../db/config.php'); ?>
+<?php require_once('config.php'); ?>
 <?php session_start(); ?>
 <?php require_once('src/user.inc.php'); ?>
 <!DOCTYPE html>
