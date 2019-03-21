@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="POST">
+                <form action="" method="post">
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Product Name:</label>
                         <input type="text" class="form-control" name="productName">
@@ -51,6 +51,10 @@
                         <label for="message-text" class="col-form-label">MSRP:</label>
                         <input type="text" class="form-control" name="MSRP">
                     </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Product image:</label>
+                        <input type="file" class="form-control" name="product_img">
+                    </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-success" name="add">Add product</button>
@@ -59,25 +63,20 @@
             </div>
             <?php 
             if (isset($_POST['add'])) {
-              $productName = filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_STRING);
-              $productLine = filter_input(INPUT_POST, 'productLine', FILTER_SANITIZE_STRING);
-              $productScale = filter_input(INPUT_POST, 'productScale', FILTER_SANITIZE_STRING);
-              $productVendor = filter_input(INPUT_POST, 'productVendor', FILTER_SANITIZE_STRING);
-              $productDescription = filter_input(INPUT_POST, 'productDescription', FILTER_SANITIZE_STRING);
-              $quantityInStock = filter_input(INPUT_POST, 'quantityInStock', FILTER_SANITIZE_NUMBER_INT);
-              $buyPrice = filter_input(INPUT_POST, 'buyPrice', FILTER_SANITIZE_NUMBER_FLOAT);
-              $MSRP = filter_input(INPUT_POST, 'MSRP', FILTER_SANITIZE_NUMBER_FLOAT);
 
-              $fields = [
-                ':productName' => $productName, 
-                ':productLine' => $productLine, 
-                ':productScale' => $productScale,
-                ':productVendor' => $productVendor, 
-                ':productDescription' => $productDescription, 
-                ':quantityInStock' => $quantityInStock, 
-                ':buyPrice' => $buyPrice, 
-                ':MSRP' => $MSRP
-              ];
+                echo $_POST['product_img'];
+
+                $fields = [
+                    ':productName' => filter_input(INPUT_POST, 'productName', FILTER_SANITIZE_STRING),
+                    ':productLine' => filter_input(INPUT_POST, 'productLine', FILTER_SANITIZE_STRING),
+                    ':productScale' => filter_input(INPUT_POST, 'productScale', FILTER_SANITIZE_STRING),
+                    ':productVendor' => filter_input(INPUT_POST, 'productVendor', FILTER_SANITIZE_STRING),
+                    ':productDescription' => filter_input(INPUT_POST, 'productDescription', FILTER_SANITIZE_STRING),
+                    ':quantityInStock' => filter_input(INPUT_POST, 'quantityInStock', FILTER_SANITIZE_NUMBER_INT),
+                    ':buyPrice' => filter_input(INPUT_POST, 'buyPrice', FILTER_SANITIZE_NUMBER_FLOAT),
+                    ':MSRP' => filter_input(INPUT_POST, 'MSRP', FILTER_SANITIZE_NUMBER_FLOAT),
+                    ':product_img' => filter_input(INPUT_POST, 'product_img', FILTER_SANITIZE_STRING),
+                ];
 
                 $editProduct = new Product();
                 $editProduct->createProduct($fields);

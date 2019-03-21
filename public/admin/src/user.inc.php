@@ -16,7 +16,7 @@ class User
         if ($stmt->execute() && $stmt->fetchColumn()) {
             $_SESSION['admin'] = $username;
             header('location: dashboard.php');
-        } 
+        }
 }
 
 public function exit()
